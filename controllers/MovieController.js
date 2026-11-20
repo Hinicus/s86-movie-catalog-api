@@ -57,13 +57,62 @@ module.exports.getMovies = (req, res) => {
 
 //get specific movie
 module.exports.getSpecificMovie = (req, res) => {
-  return Movie.findById(req.params.id).then((result) => {
+  return Movie.findById(req.params.id)
+    .then((result) => {
+      if (!result) {
+        return res
+          .status(404)
+          .send({ message: "Movie does not exist in the catalogue" });
+      }
+
+      return res.status(200).send(result);
+    })
+    .catch((error) => errorHandler(error, req, res));
+};
+
+//update specific movie
+module.exports.updateMovie = (req, res) => {
+  let title = req.body.title;
+  let director = req.body.director;
+  let year = req.body.year;
+  let description = req.body.description;
+  let genre = req.body.genre;
+
+  const updateMovie = {
+    title,
+    director,
+    year,
+    description,
+    genre,
+  };
+
+  return Movie.findByIdAndUpdate(req.params.id, updateMovie, {
+    returnDocument: "after",
+  })
+    .then((result) => {
+      if (!result) {
+        return res
+          .status(404)
+          .send({ message: "Movie does not exist in the catalogue" });
+      }
+
+      res.status(200).send({
+        message: "Movie updated successfully",
+        updatedMovie: result,
+      });
+    })
+    .catch((error) => errorHandler(error, req, res));
+};
+
+//delete specific movie
+module.exports.deleteMovie = (req, res) => {
+  return Movie.findByIdAndDelete(req.params.id).then((result) => {
     if (!result) {
       return res
         .status(404)
         .send({ message: "Movie does not exist in the catalogue" });
     }
 
-    return res.status(200).send(result);
+    res.status(200).send({ message: "Movie deleted successfully" });
   });
 };

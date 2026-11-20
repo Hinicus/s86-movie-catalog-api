@@ -1,13 +1,13 @@
 {
-    "endpoints": {
-        "login":"/login",
-        "register":"/register",
-        "addMovie": "/addMovie",
-        "getAllMovies":"/getMovies",
-        "getMovieById":"/getMovie",
-        "updateMovie":"/updateMovie",
-        "deleteMovie":"/deleteMovie",
-        "addMovieComment":"/addComment",
-        "getMovieComments":"/getComments"
-    }
+  "endpoints": {
+    "login": "/login",
+    "register": "/register",
+    "addMovie": "/addMovie",
+    "getMovies": "/getMovies",
+    "getSpecificMovie": "/getMovie",
+    "updateMovie": "/updateMovie",
+    "deleteMovie": "/deleteMovie",
+    "addMovieComment": "/addComment",
+    "getMovieComments": "/getComments"
+  }
 }

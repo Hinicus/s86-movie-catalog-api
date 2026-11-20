@@ -25,8 +25,6 @@ app.use("/users", userRoutes);
 //movie routes
 const movieRoutes = require("./routes/Movie");
 app.use("/movies", movieRoutes);
-app.use("/getMovies", movieRoutes);
-app.use("/getMovie/:id", movieRoutes);
 
 if (require.main === module) {
   app.listen(process.env.PORT || 4000, () => {
