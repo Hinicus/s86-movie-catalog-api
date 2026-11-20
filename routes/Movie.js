@@ -29,4 +29,11 @@ router.delete(
   verifyAdmin,
   movieController.deleteMovie,
 );
+
+//add comment
+router.patch("/addComment/:id", verify, movieController.addMovieComment);
+
+//get movie comments
+router.get("/getComments/:id", verify, movieController.getMovieComments);
+
 module.exports = router;
