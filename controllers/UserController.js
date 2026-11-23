@@ -53,15 +53,14 @@ module.exports.loginUser = (req, res) => {
     .catch((error) => errorHandler(error, req, res));
 };
 
-// //get user profile
-
-// module.exports.getProfile = (req, res) => {
-//   return User.findById(req.user.id)
-//     .select("-password")
-//     .then((user) => {
-//       return res.status(200).send({
-//         user,
-//       });
-//     })
-//     .catch((error) => errorHandler(error, req, res));
-// };
+//get user profile
+module.exports.getProfile = (req, res) => {
+  return User.findById(req.user.id)
+    .select("-password")
+    .then((user) => {
+      return res.status(200).send({
+        user,
+      });
+    })
+    .catch((error) => errorHandler(error, req, res));
+};
